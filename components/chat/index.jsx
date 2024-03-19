@@ -1,5 +1,5 @@
 "use client";
-import { db } from "@/firebase/config";
+import { auth, db } from "@/firebase/config";
 import {
 	collection,
 	doc,
@@ -14,9 +14,11 @@ import React, { useEffect, useRef, useState } from "react";
 import MessageInput from "./message-input";
 import Message from "./message";
 import useWindowSize from "@/lib/hooks/use-window-size";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function Chat({ chatId }) {
 	const [messages, setMessages] = useState([]);
+	const [user] = useAuthState(auth);
 	const scroll = useRef();
 	const [isLoading, setIsLoading] = useState(true);
 	const { isMobile } = useWindowSize();
@@ -63,7 +65,7 @@ export default function Chat({ chatId }) {
 				))}
 			</div>
 			<div ref={scroll}></div>
-			<MessageInput scroll={scroll} />
+			{user && <MessageInput scroll={scroll} />}
 		</div>
 	);
 }
