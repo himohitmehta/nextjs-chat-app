@@ -2,7 +2,7 @@ import { CreateConversationDialog } from "@/components/shared/create-conversatio
 
 export default function Home() {
 	return (
-		<div className="p-12">
+		<div className="p-12 grid place-items-center gap-4 ">
 			<h1 className="text-3xl font-bold">Welcome to my Messenger</h1>
 			<p>
 				Select any conversation to continue or start a new conversation
