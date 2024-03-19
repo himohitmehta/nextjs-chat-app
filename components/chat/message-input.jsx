@@ -6,10 +6,13 @@ import React, { useState } from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { useParams } from "next/navigation";
+import useWindowSize from "@/lib/hooks/use-window-size";
 
 export default function MessageInput({ scroll }) {
 	const [message, setMessage] = useState("");
 	const params = useParams();
+	const { isMobile } = useWindowSize();
+
 	const sendMessage = async (event) => {
 		event.preventDefault();
 		if (message.trim() === "") {
@@ -31,23 +34,25 @@ export default function MessageInput({ scroll }) {
 		scroll.current.scrollIntoView({ behavior: "smooth" });
 	};
 	return (
-		<form
-			className="flex gap-2 fixed bottom-10 w-9/12 border-t pt-4"
-			onSubmit={(event) => sendMessage(event)}
-		>
-			{/* <label htmlFor="messageInput" hidden>
+		<div className="fixed bottom-8 lg:w-9/12 w-11/12 ">
+			<form
+				className="flex gap-2  border-t pt-4 px-4"
+				onSubmit={(event) => sendMessage(event)}
+			>
+				{/* <label htmlFor="messageInput" hidden>
 				Enter Message
 			</label> */}
-			<Input
-				id="messageInput"
-				name="messageInput"
-				type="text"
-				className="form-input__input"
-				placeholder="type message..."
-				value={message}
-				onChange={(e) => setMessage(e.target.value)}
-			/>
-			<Button type="submit">Send</Button>
-		</form>
+				<Input
+					id="messageInput"
+					name="messageInput"
+					type="text"
+					className="form-input__input"
+					placeholder="type message..."
+					value={message}
+					onChange={(e) => setMessage(e.target.value)}
+				/>
+				<Button type="submit">Send</Button>
+			</form>
+		</div>
 	);
 }

@@ -1,15 +1,14 @@
 "use client";
-import Image from "next/image";
-import React, { useState } from "react";
-import { Button } from "../ui/button";
 import { auth } from "@/firebase/config";
-import { useAuthState } from "react-firebase-hooks/auth";
 import {
 	GoogleAuthProvider,
 	signInAnonymously,
 	signInWithEmailAndPassword,
 	signInWithRedirect,
 } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { Button } from "../ui/button";
+import { MobileMenu } from "./mobile-menu";
 
 export default function Navbar() {
 	const [user] = useAuthState(auth);
@@ -33,8 +32,8 @@ export default function Navbar() {
 		auth.signOut();
 	};
 	return (
-		<nav className="flex  border-b justify-between p-4 items-center">
-			<h1>My messenger</h1>
+		<nav className="flex  border-b justify-between p-4 items-center sticky top-0">
+			{<MobileMenu />} <h1>My messenger</h1>
 			{user ? (
 				<Button onClick={signOut} className="sign-out" type="button">
 					Sign Out

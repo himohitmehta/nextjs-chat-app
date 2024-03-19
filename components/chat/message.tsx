@@ -47,7 +47,7 @@ export default function Message({
 							{formattedTime}
 						</span>
 					</div>
-					<div className="chat-bubble">{message.text}</div>
+					<div className="chat-bubble text-white">{message.text}</div>
 					{/* <div className="chat-footer opacity-50">Delivered</div> */}
 				</div>
 			)}{" "}
@@ -70,7 +70,9 @@ export default function Message({
 							{formattedTime}
 						</span>
 					</div>
-					<div className="chat-bubble">{message.text}</div>
+					<div className="chat-bubble bg-blue-600 text-white">
+						{message.text}
+					</div>
 					{/* <div className="chat-footer opacity-50">Seen at 12:46</div> */}
 				</div>
 			)}{" "}

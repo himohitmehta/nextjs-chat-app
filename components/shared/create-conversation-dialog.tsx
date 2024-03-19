@@ -31,13 +31,14 @@ export function CreateConversationDialog() {
 			// uid,
 			name: name,
 		});
+		setName("");
 		setOpen(false);
 	};
 
 	return (
 		<Dialog open={open} onOpenChange={() => setOpen(false)}>
 			{/* <DialogTrigger asChild> */}
-			<Button onClick={() => setOpen(true)}>Create conversation</Button>
+			<Button onClick={() => setOpen(true)}>Start conversation</Button>
 			{/* </DialogTrigger> */}
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
@@ -61,7 +62,7 @@ export function CreateConversationDialog() {
 					</div>
 				</div>
 				<DialogFooter>
-					<Button onClick={() => startChat()}>Save changes</Button>
+					<Button onClick={() => startChat()}>Done</Button>
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>

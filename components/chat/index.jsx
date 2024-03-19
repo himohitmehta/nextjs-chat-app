@@ -13,11 +13,14 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import MessageInput from "./message-input";
 import Message from "./message";
+import useWindowSize from "@/lib/hooks/use-window-size";
 
 export default function Chat({ chatId }) {
 	const [messages, setMessages] = useState([]);
 	const scroll = useRef();
 	const [isLoading, setIsLoading] = useState(true);
+	const { isMobile } = useWindowSize();
+
 	useEffect(() => {
 		setIsLoading(true);
 		const q = query(
@@ -50,13 +53,15 @@ export default function Chat({ chatId }) {
 		);
 	return (
 		<div className="p-4">
-			{messages?.map((message) => (
-				<Message
-					key={message.id}
-					message={message}
-					isLoading={isLoading}
-				/>
-			))}
+			<div className="lg:w-11/12 w-full">
+				{messages?.map((message) => (
+					<Message
+						key={message.id}
+						message={message}
+						isLoading={isLoading}
+					/>
+				))}
+			</div>
 			<div ref={scroll}></div>
 			<MessageInput scroll={scroll} />
 		</div>
