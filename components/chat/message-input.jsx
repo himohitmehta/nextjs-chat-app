@@ -51,7 +51,9 @@ export default function MessageInput({ scroll }) {
 					value={message}
 					onChange={(e) => setMessage(e.target.value)}
 				/>
-				<Button type="submit">Send</Button>
+				<Button type="submit" disabled={!message}>
+					Send
+				</Button>
 			</form>
 		</div>
 	);

@@ -9,9 +9,11 @@ import {
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Button } from "../ui/button";
 import { MobileMenu } from "./mobile-menu";
+import useWindowSize from "@/lib/hooks/use-window-size";
 
 export default function Navbar() {
 	const [user] = useAuthState(auth);
+	const { isMobile } = useWindowSize();
 	const googleSignIn = () => {
 		const provider = new GoogleAuthProvider();
 		signInWithRedirect(auth, provider);
@@ -33,7 +35,7 @@ export default function Navbar() {
 	};
 	return (
 		<nav className="flex  border-b justify-between p-4 items-center sticky top-0">
-			{<MobileMenu />} <h1>My messenger</h1>
+			{isMobile && <MobileMenu />} <h1>My messenger</h1>
 			{user ? (
 				<Button onClick={signOut} className="sign-out" type="button">
 					Sign Out

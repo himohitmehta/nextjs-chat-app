@@ -31,8 +31,10 @@ export function CreateConversationDialog() {
 			// uid,
 			name: name,
 		});
+
 		setName("");
 		setOpen(false);
+        setIsLoading(false);
 	};
 
 	return (
@@ -62,7 +64,9 @@ export function CreateConversationDialog() {
 					</div>
 				</div>
 				<DialogFooter>
-					<Button onClick={() => startChat()}>Done</Button>
+					<Button onClick={() => startChat()} disabled={isLoading}>
+						Done
+					</Button>
 				</DialogFooter>
 			</DialogContent>
 		</Dialog>

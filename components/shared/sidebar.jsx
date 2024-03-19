@@ -46,7 +46,7 @@ export default function Sidebar() {
 	}, []);
 	if (isLoading)
 		return (
-			<div>
+			<div className="flex flex-col gap-4 mt-4 px-4">
 				<Skeleton className="h-10 w-200 rounded-md" />
 
 				<Skeleton className="h-10 w-200 rounded-md" />
@@ -55,10 +55,10 @@ export default function Sidebar() {
 		);
 
 	return (
-		<div className="w-full p-4 ">
+		<div className="w-full p-4 justify-between  flex flex-col flex-1">
 			{/* <Button onClick={() => startChat()}>Create a conversation</Button> */}
-			<CreateConversationDialog />
-			<div className="flex flex-col mt-2">
+			<h1 className="font-bold text-xl">Your conversations</h1>
+			<div className="flex-1 h-full flex flex-col my-2 ">
 				{conversations.length > 0 ? (
 					conversations.map((item) => {
 						return (
@@ -67,8 +67,8 @@ export default function Sidebar() {
 								key={item.id}
 								className={
 									conversation === item.id
-										? "font-bold py-2 px-4 bg-slate-300/50 rounded-md"
-										: "hover:underline py-2 px-4 hover:bg-slate-300/30 rounded-md"
+										? "font-bold py-2 px-4 text-gray-700 bg-slate-300/50 rounded-md"
+										: "hover:underline font-bold text-gray-700 py-2 px-4 hover:bg-slate-300/30 rounded-md"
 								}
 							>
 								{item.name}
@@ -77,10 +77,14 @@ export default function Sidebar() {
 					})
 				) : (
 					<div>
-						<h1>Start chatting now</h1>
+						<h1>
+							You don&apos;t have any conversations. Start a
+							conversation by clicking the button below.
+						</h1>
 					</div>
 				)}
 			</div>
+			<CreateConversationDialog />
 		</div>
 	);
 }

@@ -24,9 +24,11 @@ export function MobileMenu() {
 					<MenuIcon />
 				</Button>
 			</SheetTrigger>
-			<SheetContent side={"left"}>
+			<SheetContent side={"left"} className="p-0">
 				<SheetHeader>
-					<SheetTitle>My Messenger</SheetTitle>
+					<SheetTitle className="px-4 mt-4 font-semibold text-2xl">
+						My Messenger
+					</SheetTitle>
 				</SheetHeader>
 				<Sidebar />
 			</SheetContent>
